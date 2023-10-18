@@ -9,6 +9,7 @@ const Navbar = () => {
                             <li><Link to='/addProduct'>My cart</Link></li>
                             <li><Link to='/addProduct'>Blog</Link></li>
                         </>
+                        // const userJsonUrl = '/user.json?url'
     return (
         <div>
             <div className="navbar bg-base-100">
