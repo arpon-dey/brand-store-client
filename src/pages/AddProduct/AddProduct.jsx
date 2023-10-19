@@ -1,5 +1,6 @@
 import { Option, Select } from "@material-tailwind/react";
 import { useState } from "react";
+import Swal from "sweetalert2";
 import Footer from "../shared/Footer";
 import Navbar from "../shared/Navbar";
 
@@ -18,7 +19,7 @@ const AddProduct = () => {
         const rating = form.rating.value;
         const brandName = brand
         const productType = type
-        const user = {
+        const product = {
             name,
             productImg,
             brandName,
@@ -29,7 +30,26 @@ const AddProduct = () => {
             rating,
         };
 
-        console.log(user);
+        console.log(product);
+
+        fetch('http://localhost:5000/products',{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify(product)
+        })
+        .then((res) => res.json())
+        .then(data =>{
+            console.log(data)
+            if(data.insertedId){
+                Swal.fire(
+                    'Good job!',
+                    'Product added successfully',
+                    'success'
+                  )
+            }
+        })
 }
 return (
     <div>
@@ -70,7 +90,7 @@ return (
                                 >
                                     <Option value="Samsung">Samsung</Option>
                                     <Option value="Apple">Apple</Option>
-                                    <Option value="Lava">Lava</Option>
+                                    <Option value="Huawei">Huawei</Option>
                                     <Option value="Honor">Honor</Option>
 
                                 </Select>

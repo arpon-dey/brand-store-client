@@ -22,7 +22,7 @@ const Navbar = () => {
                          {navItems}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost normal-case text-2xl">Tecsus </a>
+                    <Link to='/' className="btn btn-ghost normal-case text-2xl">Tecsus </Link>
                 </div>
                 <div className="navbar-center  hidden lg:flex">
                     <ul className="menu text-lg font-semibold menu-horizontal px-1">
