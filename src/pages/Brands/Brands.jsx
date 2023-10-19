@@ -5,7 +5,9 @@ import SingleProducts from "./SingleProducts";
 
 const Brands = () => {
     const params = useLoaderData();
-    console.log(params);
+    // console.log(params);
+
+
     let brandName = ""
     if(params.length>0){
         brandName=params[0].brandName;

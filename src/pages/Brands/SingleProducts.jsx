@@ -1,8 +1,10 @@
 import { Button, Card, CardBody, CardFooter, CardHeader, Typography, } from "@material-tailwind/react";
 import React from 'react';
+import { Link } from "react-router-dom";
 
 const SingleProducts = ({ items }) => {
     const { _id, brandName, name, productImg, productType, price, rating } = items
+    
     return (
         <div>
             
@@ -36,7 +38,7 @@ const SingleProducts = ({ items }) => {
                 </CardBody>
                 <CardFooter className="pt-0 flex gap-4 justify-center">
                     {/* <div className="s"> */}
-                        <Button>Details</Button>
+                    <Link to={`/products/${brandName}/${_id}`}>  <Button>Details</Button></Link>
                         <Button>Update</Button>
                         {/* </div> */}
                 </CardFooter>
