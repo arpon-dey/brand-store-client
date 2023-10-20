@@ -1,11 +1,12 @@
 import { useContext } from "react";
 import { Link, useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProviders";
 import Footer from "../shared/Footer";
 import Navbar from "../shared/Navbar";
 
 const ProductDetails = () => {
-    const {user} = useContext(AuthContext)
+    const {user,} = useContext(AuthContext)
     // const [ singleCartItem, setSingleCartItem] = useState([])
 
     const products = useLoaderData()
@@ -30,8 +31,16 @@ const ProductDetails = () => {
             .then(response => response.json())
             .then(data => {
                 console.log("cart data", data)
+                Swal.fire(
+                    'Good job!',
+                    'Product added to cart successfully',
+                    'success'
+                  )
 
             })
+            .catch(error => {
+                console.error("Error adding to cart: ", error);
+            });
     }
 
 

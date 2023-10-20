@@ -8,9 +8,9 @@ import Navbar from "../shared/Navbar";
 
 
 const Register = () => {
-    const { createUser, updateUserProfile } = useContext(AuthContext)
+    const { createUser, updateUserProfile, user } = useContext(AuthContext)
 
-
+    console.log(user);
    
       
     const handleRegister = e => {

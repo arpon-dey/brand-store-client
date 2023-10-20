@@ -3,6 +3,7 @@ import {
 } from "react-router-dom";
 import Root from "../Root/Root";
 import AddProduct from "../pages/AddProduct/AddProduct";
+import UpdateProduct from "../pages/AddProduct/UpdateProduct";
 import Brands from "../pages/Brands/Brands";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
@@ -33,6 +34,11 @@ const router = createBrowserRouter([
             {
                 path: '/products/:brandName/:id',
                 element: <ProductDetails></ProductDetails>,
+                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.brandName}/${params.id}`) 
+            },
+            {
+                path: 'updateCoffee/:brandName/:id',
+                element: <UpdateProduct></UpdateProduct>,
                 loader: ({ params }) => fetch(`http://localhost:5000/products/${params.brandName}/${params.id}`) 
             },
             {

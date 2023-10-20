@@ -39,7 +39,8 @@ const SingleProducts = ({ items }) => {
                 <CardFooter className="pt-0 flex gap-4 justify-center">
                     {/* <div className="s"> */}
                     <Link to={`/products/${brandName}/${_id}`}>  <Button>Details</Button></Link>
-                        <Button>Update</Button>
+                    <Link to={`/updateCoffee/${brandName}/${_id}`}>  <Button>Update</Button></Link>
+                        
                         {/* </div> */}
                 </CardFooter>
             </Card>

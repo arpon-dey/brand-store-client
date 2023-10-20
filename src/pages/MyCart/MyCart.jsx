@@ -14,7 +14,7 @@ const MyCart = () => {
     }
 
     console.log(cartProducts);
-    const userCartItems = cartProducts.filter(item => item.email === user.email)
+    const userCartItems = cartProducts.filter(item => item.email === user?.email)
     console.log(userCartItems);
 
     return (
