@@ -1,79 +1,137 @@
-import { Button, Card, CardBody, CardFooter, CardHeader, IconButton, Typography } from "@material-tailwind/react";
-import { useLoaderData } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProviders";
 import Footer from "../shared/Footer";
 import Navbar from "../shared/Navbar";
 
 const ProductDetails = () => {
+    const {user} = useContext(AuthContext)
+    // const [ singleCartItem, setSingleCartItem] = useState([])
 
     const products = useLoaderData()
-    const { _id, brandName, name, productImg, description,productType, price, rating } = products
+    const { _id, brandName, name, productImg, description, productType, price, rating } = products
+
+    const singleCartItem = {
+        email: user.email,
+        brandName: brandName,
+        name: name,
+        productImg: productImg,
+        description: description,
+        price: price,
+      };
+    const handleAddToCart = () => {
+        fetch('http://localhost:5000/myCart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(singleCartItem)
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log("cart data", data)
+
+            })
+    }
+
+
+
+    // const productsItem = products
+    // console.log(productsItem);
+
 
     return (
         <div>
             <Navbar></Navbar>
-            
 
-            
-            <Card className="w-1/2 mx-auto my-8   shadow-lg">
-                <CardHeader floated={false} color="blue-gray">
-                    <img
-                        src={productImg}
-                        alt="ui/ux review check" 
-                        className=" relative h-96"
-                    />
-                    <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-                    <IconButton
-                        size="sm"
-                        color="red"
-                        variant="text"
-                        className="!absolute top-4 right-4 rounded-full"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                            className="h-6 w-6"
-                        >
-                            <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
-                        </svg>
-                    </IconButton>
-                </CardHeader>
-                <CardBody>
-                    <div className="mb-3 flex items-center justify-between">
-                        <Typography variant="h5" color="blue-gray" className="font-semibold">
-                           {name}
-                        </Typography>
-                        <Typography
-                            color="blue-gray"
-                            className="flex items-center gap-1.5 font-normal"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24"
-                                fill="currentColor"
-                                className="-mt-0.5 h-5 w-5 text-yellow-700"
-                            >
-                                <path
-                                    fillRule="evenodd"
-                                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                                    clipRule="evenodd"
-                                />
-                            </svg>
-                            {rating}
-                        </Typography>
+
+
+            <section className="text-gray-700 body-font overflow-hidden bg-white">
+                <div className="container px-5 py-24 mx-auto">
+                    <div className="lg:w-4/5 mx-auto flex flex-wrap">
+                        <img alt="ecommerce" className="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200" src={productImg} />
+                        <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+                            <h2 className="text-sm title-font text-gray-500 tracking-widest">{brandName}</h2>
+                            <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">{name}</h1>
+                            <div className="flex mb-4">
+                                <span className="flex items-center">
+                                    <svg fill="currentColor" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 text-red-500" viewBox="0 0 24 24">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                                    </svg>
+                                    <svg fill="currentColor" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 text-red-500" viewBox="0 0 24 24">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                                    </svg>
+                                    <svg fill="currentColor" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 text-red-500" viewBox="0 0 24 24">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                                    </svg>
+                                    <svg fill="currentColor" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 text-red-500" viewBox="0 0 24 24">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                                    </svg>
+                                    <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 text-red-500" viewBox="0 0 24 24">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                                    </svg>
+                                    <span className="text-gray-600 ml-3">4 Reviews</span>
+                                </span>
+                                <span className="flex ml-3 pl-3 py-2 border-l-2 border-gray-200">
+                                    <a className="text-gray-500">
+                                        <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-5 h-5" viewBox="0 0 24 24">
+                                            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                                        </svg>
+                                    </a>
+                                    <a className="ml-2 text-gray-500">
+                                        <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-5 h-5" viewBox="0 0 24 24">
+                                            <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                                        </svg>
+                                    </a>
+                                    <a className="ml-2 text-gray-500">
+                                        <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-5 h-5" viewBox="0 0 24 24">
+                                            <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+                                        </svg>
+                                    </a>
+                                </span>
+                            </div>
+                            <p className="leading-relaxed">{description}</p>
+                            <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
+                                <div className="flex">
+                                    <span className="mr-3">Color</span>
+                                    <button className="border-2 border-gray-300 rounded-full w-6 h-6 focus:outline-none"></button>
+                                    <button className="border-2 border-gray-300 ml-1 bg-gray-700 rounded-full w-6 h-6 focus:outline-none"></button>
+                                    <button className="border-2 border-gray-300 ml-1 bg-orange-500 rounded-full w-6 h-6 focus:outline-none"></button>
+                                </div>
+                                <div className="flex ml-6 items-center">
+                                    <span className="mr-3">variant</span>
+                                    <div className="relative">
+                                        <select className="rounded border appearance-none border-gray-400 py-2 focus:outline-none focus:border-red-500 text-base pl-3 pr-10">
+                                            <option>64/4</option>
+                                            <option>64/8</option>
+                                            <option>128/8</option>
+                                            <option>128/12</option>
+                                        </select>
+                                        <span className="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center">
+                                            <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4" viewBox="0 0 24 24">
+                                                <path d="M6 9l6 6 6-6"></path>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div className="ml-2">ROM/RAM</div>
+                                </div>
+                            </div>
+                            <div className="flex">
+                                <span className="title-font font-medium text-2xl text-gray-900">$ {price}</span>
+                                <button onClick={handleAddToCart} className="flex ml-auto text-white bg-orange-400 border-0 py-2 px-6 focus:outline-none hover:bg-orange-500 rounded"> <Link>Add to cart</Link></button>
+                                <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
+                                    <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-5 h-5" viewBox="0 0 24 24">
+                                        <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <Typography color="gray">
-                        {description}
-                    </Typography>
-                    
-                </CardBody>
-                <CardFooter className="pt-3">
-                    <Button size="lg" fullWidth={true}>
-                        Add to cart
-                    </Button>
-                </CardFooter>
-            </Card>
-          
+                </div>
+            </section>
+
+
+
             <Footer></Footer>
         </div>
     );

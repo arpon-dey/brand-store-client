@@ -1,7 +1,7 @@
 import Lottie from "lottie-react";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import github from "../../../public/Animation - 1696651865357.json";
 import google from "../../../public/google.json";
@@ -12,15 +12,15 @@ import Navbar from "../shared/Navbar";
 
 const Login = () => {
     const { signInUser, googleSignIn } = useContext(AuthContext)
-    // const navigate = useNavigate()
-    // const location = useLocation()
+    const navigate = useNavigate()
+    const location = useLocation()
 
     const handleGoogleSignIn = () => {
         googleSignIn()
             .then(result => {
                 console.log(result.user)
                 navigate('/')
-                Toast.success('Logged in successfully')
+                toast.success('Logged in successfully')
 
 
             })

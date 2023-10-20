@@ -6,17 +6,17 @@ const Banner = () => {
 
             <Carousel className="rounded-xl">
                 <img
-                    src="https://i.ibb.co/9q6h3fP/34013367-black-friday-web-banner-25.jpg"
+                    src="https://imageupload.io/ib/72muVgnspoRRCR1_1697719810.jpg"
                     alt="image 1"
                     className="h-full w-full object-cover"
                 />
                 <img
-                    src="https://i.ibb.co/Pgnhnfs/10865896-18899294.jpg"
+                    src="https://imageupload.io/ib/8nsdsuaRHXk1Cew_1697719864.jpg"
                     alt="image 2"
                     className="h-full w-full object-cover"
                 />
                 <img
-                    src="https://i.ibb.co/3kJKjHM/18952171-6024800.jpg" 
+                    src="https://imageupload.io/ib/Q0bTHydsBJzZFRO_1697719896.jpg" 
                     alt="image 3"
                     className="h-full w-full object-cover"
                 />

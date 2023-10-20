@@ -1,10 +1,12 @@
 import { Option, Select } from "@material-tailwind/react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../Providers/AuthProviders";
 import Footer from "../shared/Footer";
 import Navbar from "../shared/Navbar";
 
 const AddProduct = () => {
+    const {user} = useContext(AuthContext)
     const [type, setType] = useState("")
     const [brand, setBrand] = useState("")
 
@@ -19,6 +21,7 @@ const AddProduct = () => {
         const rating = form.rating.value;
         const brandName = brand
         const productType = type
+        const email= user.email
         const product = {
             name,
             productImg,
@@ -28,6 +31,7 @@ const AddProduct = () => {
             price,
             description,
             rating,
+            email
         };
 
         console.log(product);

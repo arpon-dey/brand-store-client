@@ -1,15 +1,27 @@
 import Lottie from "lottie-react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
-import user from '../../../public/user.json';
+import logout from '../../../public/logout.json';
+import userLogo from '../../../public/user.json';
+import { AuthContext } from "../../Providers/AuthProviders";
 
 const Navbar = () => {
-    const navItems =    <>
-                            <li><Link to='/'>Home</Link></li>
-                            <li><Link to='/addProduct'>Add product</Link></li>
-                            <li><Link to='/addProduct'>My cart</Link></li>
-                            <li><Link to='/addProduct'>Blog</Link></li>
-                        </>
-                        // const userJsonUrl = '/user.json?url'
+    const { user, logOut } = useContext(AuthContext)
+    const handleSignOut = () => {
+        logOut()
+
+    }
+    const navItems = <>
+        <li><Link to='/'>Home</Link></li>
+        {
+            user ? <>
+                <li><Link to='/addProduct'>Add product</Link></li>
+                <li><Link to='/myCart'>My cart</Link></li></> : <></>}
+
+        <li><Link to='/addProduct'>Blog</Link></li>
+    </>
+
+
     return (
         <div>
             <div className="navbar bg-base-100">
@@ -19,19 +31,25 @@ const Navbar = () => {
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
                         <ul tabIndex={0} className="menu font-semibold menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                         {navItems}
+                            {navItems}
                         </ul>
                     </div>
                     <Link to='/' className="btn btn-ghost normal-case text-2xl">Tecsus </Link>
                 </div>
                 <div className="navbar-center  hidden lg:flex">
                     <ul className="menu text-lg font-semibold menu-horizontal px-1">
-                       {navItems}
+                        {navItems}
                     </ul>
                 </div>
                 <div className="navbar-end">
-                   <Link to='/login'><Lottie animationData={user} className="w-14"  ></Lottie></Link>
-                    
+                    {user ? <>
+                        <p className=" font-semibold"> {user?.displayName ? <p>{user.displayName}</p> : <></>}</p>
+                        <img src={user.photoURL} className="w-10 mx-4 rounded-full" alt="" />
+                    </> : <></>}
+                    {user ? <Lottie animationData={logout} onClick={handleSignOut} className="w-14"  ></Lottie> :
+                        <Link to='/login'><Lottie animationData={userLogo} className="w-14"  ></Lottie></Link>
+                    }
+
                 </div>
             </div>
         </div>
