@@ -1,61 +1,71 @@
-import { Card, CardBody, CardHeader, Typography } from "@material-tailwind/react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProviders";
 import Footer from "../shared/Footer";
 import Navbar from "../shared/Navbar";
+import SingleProductInCart from "./SingleProductInCart";
 
 const MyCart = () => {
     const navigate = useNavigate()
     const { user } = useContext(AuthContext)
     const cartProducts = useLoaderData()
-    if(!user){
+
+
+    const [cartItems, setCartItems] = useState(cartProducts)
+
+    if (!user) {
         navigate('/')
     }
 
-    console.log(cartProducts);
-    const userCartItems = cartProducts.filter(item => item.email === user?.email)
+
+
+    const handleDeleteProduct = _id => {
+        console.log(_id);
+
+
+
+        fetch(`http://localhost:5000/myCart/${_id}`, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.deletedCount > 0) {
+                    Swal.fire(
+                        'Deleted!',
+                        'Your Coffee has been deleted.',
+                        'success'
+                    )
+                    setCartItems((prevItems) =>
+                        prevItems.filter((item) => item._id !== _id)
+                    );
+
+                }
+            })
+
+    }
+
+
+
+    const userCartItems = cartItems.filter((item) => item.email === user?.email);
     console.log(userCartItems);
 
     return (
         <div>
             <Navbar></Navbar>
-            <div>
-                {
-                    userCartItems.map(userCartItem =>
-                        <div key={userCartItem._id}>
-
-
-
-                            <Card className="w-full max-w-[48rem] flex-row">
-                                <CardHeader
-                                    shadow={false}
-                                    floated={false}
-                                    className="m-0 w-2/5 shrink-0 rounded-r-none"
-                                >
-                                    <img
-                                        src={userCartItem.productImg}
-                                        alt="card-image"
-                                        className="h-full w-full object-cover"
-                                    />
-                                </CardHeader>
-                                <CardBody>
-                                    <Typography variant="h6" color="gray" className="mb-4 uppercase">
-                                        {userCartItem.brandName}
-                                    </Typography>
-                                    <Typography variant="h4" color="blue-gray" className="mb-2">
-                                        {userCartItem.name}
-                                    </Typography>
-                                    <Typography color="gray" className="mb-8 font-normal">
-                                        {userCartItem.description}
-                                    </Typography>
-                                    <Typography className="font-semibold">
-                                        Price: ${userCartItem.price}
-                                    </Typography>
-                                </CardBody>
-                            </Card>
-                        </div>)
-                }
+            <div className="grid grid-cols-2 gap-8">
+                {userCartItems.length > 0 ? (
+                    userCartItems.map((userCartItem) => (
+                        <SingleProductInCart
+                            key={userCartItem._id}
+                            userCartItem={userCartItem}
+                            onDelete={handleDeleteProduct}
+                        ></SingleProductInCart>
+                    ))
+                ) : (
+                    <h2 className="text-center font-semibold text-2xl">Your cart is empty</h2>
+                )}
             </div>
             <Footer></Footer>
         </div>
