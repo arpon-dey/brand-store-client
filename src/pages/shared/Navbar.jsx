@@ -49,8 +49,9 @@ const Navbar = () => {
                     {user ? <Lottie animationData={logout} onClick={handleSignOut} className="w-14"  ></Lottie> :
                         <Link to='/login'><Lottie animationData={userLogo} className="w-14"  ></Lottie></Link>
                     }
-
+                    
                 </div>
+              
             </div>
         </div>
     );

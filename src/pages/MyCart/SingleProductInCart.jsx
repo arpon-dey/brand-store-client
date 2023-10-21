@@ -18,6 +18,7 @@ const SingleProductInCart = ({ userCartItem, onDelete }) => {
                 }
             })
     }
+    const description = userCartItem.description || "";
 
 
     return (
@@ -46,7 +47,7 @@ const SingleProductInCart = ({ userCartItem, onDelete }) => {
                             {userCartItem.name}
                         </Typography>
                         <Typography color="gray" className="mb-8 font-normal">
-                            {userCartItem.description.slice(0, 50)}... <span className="text-red-500 font-semibold">read more</span>
+                            {description.slice(0, 50)}... <span className="text-red-500 font-semibold">read more</span>
                         </Typography>
                         <Typography className="font-semibold">
                             Price: ${userCartItem.price}

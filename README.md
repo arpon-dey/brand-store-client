@@ -1,4 +1,4 @@
-Live link:
+Live link: https://tech-store-5d9b6.web.app/
 
 project functionalities.
 

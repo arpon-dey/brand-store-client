@@ -1,5 +1,6 @@
 import Marquee from "react-fast-marquee";
 
+
 const HotNews = () => {
     return (
         <div>
@@ -9,6 +10,8 @@ const HotNews = () => {
             <p className="mr-8">🔥 Hot News at Techsus! Discover the latest and greatest in tech innovation right here.</p>
             <p className="mr-8">Stay up to date with the latest tech innovations! </p>
             </Marquee>
+          
+
         </div>
         </div>
     );
