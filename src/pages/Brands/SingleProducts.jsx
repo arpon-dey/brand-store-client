@@ -6,7 +6,7 @@ const SingleProducts = ({ items }) => {
     const { _id, brandName, name, productImg, productType, price, rating } = items
     
     return (
-        <div>
+        <div className=" mx-auto mb-8 ">
             
             <Card className="mt-6 w-80">
                 <CardHeader color="blue-gray" className="relative h-44">
@@ -39,7 +39,7 @@ const SingleProducts = ({ items }) => {
                 <CardFooter className="pt-0 flex gap-4 justify-center">
                     {/* <div className="s"> */}
                     <Link to={`/products/${brandName}/${_id}`}>  <Button>Details</Button></Link>
-                    <Link to={`/updateCoffee/${brandName}/${_id}`}>  <Button>Update</Button></Link>
+                    <Link to={`/updateProduct/${brandName}/${_id}`}>  <Button>Update</Button></Link>
                         
                         {/* </div> */}
                 </CardFooter>

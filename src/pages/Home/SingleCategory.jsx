@@ -6,13 +6,14 @@ const SingleCategory = ({ category }) => {
     // console.log(category);
     const { _id, brandName, brandImg } = category
     return (
-        <div> 
+        <div className="ml-16 md:ml-0"> 
             <Link to={`/products/${brandName}`}>
             <Card className="mt-6 w-72">
                 <CardHeader color="blue-gray" className="relative ">
                     <img
                         src={brandImg}
                         alt="card-image"
+                        className="relative h-40"
                     />
                 </CardHeader>
                 <CardBody>

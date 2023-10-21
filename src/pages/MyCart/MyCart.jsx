@@ -25,7 +25,7 @@ const MyCart = () => {
 
 
 
-        fetch(`http://localhost:5000/myCart/${_id}`, {
+        fetch(`https://brand-store-server-rlg1n5ykx-arpon-durjoy.vercel.app/myCart/${_id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -34,7 +34,7 @@ const MyCart = () => {
                 if (data.deletedCount > 0) {
                     Swal.fire(
                         'Deleted!',
-                        'Your Coffee has been deleted.',
+                        'Your product has been deleted.',
                         'success'
                     )
                     setCartItems((prevItems) =>
@@ -54,7 +54,7 @@ const MyCart = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <div className="grid grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-24">
                 {userCartItems.length > 0 ? (
                     userCartItems.map((userCartItem) => (
                         <SingleProductInCart

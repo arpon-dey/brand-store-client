@@ -6,9 +6,9 @@ const Footer = () => {
                 <aside>
 
                     <p className="font-bold text-3xl text-white">
-                        Moment Hunters
+                        Tecsus
                     </p>
-                    <p>Providing reliable event planner since 1992</p>
+                    <p>Providing best quality tech product since 2002</p>
                     <p>Copyright © 2023 - All right reserved</p>
                 </aside>
                 <nav>

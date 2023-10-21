@@ -26,7 +26,7 @@ const SingleProductInCart = ({ userCartItem, onDelete }) => {
 
 
 
-                <Card className="w-full max-w-[48rem] flex-row">
+                <Card className="w-full max-w-[48rem]   flex-row">
                     <CardHeader
                         shadow={false}
                         floated={false}
@@ -35,7 +35,7 @@ const SingleProductInCart = ({ userCartItem, onDelete }) => {
                         <img
                             src={userCartItem.productImg}
                             alt="card-image"
-                            className="h-full w-full object-cover"
+                            className="h-96 w-full object-cover"
                         />
                     </CardHeader>
                     <CardBody>
@@ -46,7 +46,7 @@ const SingleProductInCart = ({ userCartItem, onDelete }) => {
                             {userCartItem.name}
                         </Typography>
                         <Typography color="gray" className="mb-8 font-normal">
-                            {userCartItem.description}
+                            {userCartItem.description.slice(0, 50)}... <span className="text-red-500 font-semibold">read more</span>
                         </Typography>
                         <Typography className="font-semibold">
                             Price: ${userCartItem.price}

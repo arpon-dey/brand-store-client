@@ -21,7 +21,7 @@ const ProductDetails = () => {
         price: price,
       };
     const handleAddToCart = () => {
-        fetch('http://localhost:5000/myCart', {
+        fetch('https://brand-store-server-rlg1n5ykx-arpon-durjoy.vercel.app/myCart', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -28,23 +28,23 @@ const router = createBrowserRouter([
             {
                 path: '/products/:brandName',
                 element: <PrivateRoute><Brands></Brands></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.brandName}`),
+                loader: ({ params }) => fetch(`https://brand-store-server-rlg1n5ykx-arpon-durjoy.vercel.app/products/${params.brandName}`),
                 
             },
             {
                 path: '/products/:brandName/:id',
                 element: <ProductDetails></ProductDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.brandName}/${params.id}`) 
+                loader: ({ params }) => fetch(`https://brand-store-server-rlg1n5ykx-arpon-durjoy.vercel.app/products/${params.brandName}/${params.id}`) 
             },
             {
-                path: 'updateCoffee/:brandName/:id',
+                path: 'updateProduct/:brandName/:id',
                 element: <UpdateProduct></UpdateProduct>,
-                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.brandName}/${params.id}`) 
+                loader: ({ params }) => fetch(`https://brand-store-server-rlg1n5ykx-arpon-durjoy.vercel.app/products/${params.brandName}/${params.id}`) 
             },
             {
                 path: '/myCart',
                 element:<MyCart></MyCart>,
-                loader: ()=>fetch('http://localhost:5000/myCart')
+                loader: ()=>fetch('https://brand-store-server-rlg1n5ykx-arpon-durjoy.vercel.app/myCart')
                    
             },
             {
@@ -54,6 +54,10 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register />,
+            },
+            {
+                path: "*",
+                element: <div>404 not found</div>
             }
         ]
     },

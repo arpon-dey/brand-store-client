@@ -36,7 +36,7 @@ const AddProduct = () => {
 
         console.log(product);
 
-        fetch('http://localhost:5000/products',{
+        fetch('https://brand-store-server-rlg1n5ykx-arpon-durjoy.vercel.app/products',{
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
@@ -56,21 +56,21 @@ const AddProduct = () => {
         })
 }
 return (
-    <div>
+    <div  className="">
         <Navbar></Navbar>
 
-        <div >
+        <div>
 
             <form onSubmit={handleAddProduct}>
-                {/* //onSubmit={handleAddToy} */}
-                <div className="hero  ">
+               
+                
                     <div className="card  w-full  shadow-2xl bg-gradient-to-r from-indigo-200 to-indigo-100     ">
                         <div className="card-body">
-                            {/* <p className="text-2xl text-center text-black font-bold mb-4">All toys </p> */}
+                            
                             <p className="btn btn-neutral w-1/2 mx-auto hover:text-white text-black text-2xl font-bold glass mb-4">
                                 Add a product{" "}
                             </p>
-                            <div className="form-control grid grid-cols-2 gap-2">
+                            <div className="form-control grid grid-cols-1 md:grid-cols-2 gap-2">
                                 <input
                                     type="text"
                                     placeholder="Product name"
@@ -80,13 +80,12 @@ return (
                                 <input
                                     type="text"
                                     placeholder="Product Photo URL"
-                                    //   onChange={handleImageChange}
                                     name="productImg"
                                     className="input input-bordered bg-white text-black"
                                 />
                             </div>
 
-                            <div className="form-control grid grid-cols-2 gap-2">
+                            <div className="form-control grid grid-cols-1 md:grid-cols-2 gap-2">
                                 <Select
                                     label="Brand Name"
                                     onChange={(value => setBrand(value))}
@@ -94,6 +93,8 @@ return (
                                 >
                                     <Option value="Samsung">Samsung</Option>
                                     <Option value="Apple">Apple</Option>
+                                    <Option value="OnePlus">OnePlus</Option>
+                                    <Option value="Xiaomi">Xiaomi</Option>
                                     <Option value="Huawei">Huawei</Option>
                                     <Option value="Honor">Honor</Option>
 
@@ -105,7 +106,7 @@ return (
                                     className="input input-bordered bg-white text-black"
                                 />
                             </div>
-                            <div className="form-control grid grid-cols-2 gap-2">
+                            <div className="form-control grid grid-cols-1 md:grid-cols-2 gap-2">
                                 <Select
                                     label="Product Type"
                                     onChange={(value => setType(value))}
@@ -123,7 +124,7 @@ return (
                                     className="input input-bordered bg-white text-black"
                                 />
                             </div>
-                            <div className="form-control grid grid-cols-2 gap-2">
+                            <div className="form-control grid grid-cols-1 md:grid-cols-2 gap-2">
                                 <input
                                     type="text"
                                     placeholder="Short description"
@@ -144,7 +145,7 @@ return (
                             </div>
                         </div>
                     </div>
-                </div>
+                
             </form>
         </div>
         <Footer></Footer>

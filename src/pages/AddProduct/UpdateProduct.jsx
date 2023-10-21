@@ -14,7 +14,7 @@ const UpdateProduct = () => {
     const [brand, setBrand] = useState("")
 
     const product = useLoaderData()
-    const { _id,name, productImg, price, productType, brandName, brandImg, description, rating } = product
+    const { _id, name, productImg, price, productType, brandName, brandImg, description, rating } = product
 
     const handleUpdateProduct = e => {
         e.preventDefault();
@@ -42,7 +42,7 @@ const UpdateProduct = () => {
 
         console.log(product);
 
-        fetch(`http://localhost:5000/products/${brandName}/${_id}`, {
+        fetch(`https://brand-store-server-rlg1n5ykx-arpon-durjoy.vercel.app/products/${brandName}/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -103,6 +103,8 @@ const UpdateProduct = () => {
                                     >
                                         <Option value="Samsung">Samsung</Option>
                                         <Option value="Apple">Apple</Option>
+                                        <Option value="OnePlus">OnePlus</Option>
+                                        <Option value="Xiaomi">Xiaomi</Option>
                                         <Option value="Huawei">Huawei</Option>
                                         <Option value="Honor">Honor</Option>
 
