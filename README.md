@@ -6,5 +6,6 @@ project functionalities:-
 - added the ability to add, edit, delete, update products in the database
 - made sure that all data is stored securely with according to user.
 - applied toast/ sweet alert where it needed.
+  
 
-- Live link: https://tech-store-5d9b6.web.app/
+Live link: https://tech-store-5d9b6.web.app/
