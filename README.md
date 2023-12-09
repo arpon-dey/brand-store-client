@@ -9,3 +9,5 @@ project functionalities:-
   
 
 Live link: https://tech-store-5d9b6.web.app/
+
+Technology used: Reactjs, Tailwind css, NodeJs, ExpressJs, MongoDB, Firebase.
